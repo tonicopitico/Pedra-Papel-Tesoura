@@ -1,0 +1,272 @@
+:root{
+    --clr-background: #383bdb;
+    --clr-box_background: #ffffff;
+    --clr-contrast: #000000;
+    --clr-primary: #4f95ff;
+    --clr-primary_variant: #3133bb;
+    --clr-secondary: #4cf6cc;
+    --clr-warning: #f64c71;
+    --clr-col_1:rgb(139, 139, 139);
+}
+.dark-mode{
+    --clr-background: #27223a;
+    --clr-box_background: #110b20;
+    --clr-box_background_low_contrast: #2d1a33;
+    --clr-contrast: #000000;
+    --clr-primary: #2026b0;
+    --clr-primary_variant: #242582;
+    --clr-secondary: #f64c71;
+    --clr-warning: #f64c71;
+    --clr-col_1:rgb(139, 139, 139);
+}
+
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    
+    background-color: var(--clr-background);
+    cursor: default;
+}
+
+/*============================MAIN CONTAINER============================*/
+
+#container{
+    background-color: var(--clr-box_background);
+    display: flex;
+
+    flex-direction: column;
+    align-content: center;
+    font-family: 'General Sans', sans-serif;
+    color: var(--clr-background);
+
+    margin-top: 2.5rem;
+    padding: 2rem;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 50%);
+
+    border-radius: 15px;
+
+    min-height: 27rem;
+    max-height: fit-content;
+    min-width: 23rem;
+    max-width: 27rem;
+}
+
+#title{
+    margin: 0;
+    height: fit-content;
+    width: auto;
+}
+
+/*----------------------------PVC CONTAINER-----------------------------*/
+#pvcContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#pvcContainer .handIdentifier{
+    margin-bottom: 5px;
+}
+
+#x{
+    position: absolute;
+    margin: 0;
+    top: 27%;
+    left: 49.5%;
+    color: #000000;
+}
+
+/*-------------------------TURN HANDS CONTAINER-------------------------*/
+#turnHandsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#turnHandsContainer #punho_1{
+    width: 6rem;
+    transform: rotate(60deg);
+}
+#turnHandsContainer #punho_2{
+    width: 6rem;
+    transform: scaleY(-100%) rotate(-120deg);
+}
+
+/*--------------------------SCORE CONTAINERS----------------------------*/
+#scoreNamesContainer{
+    margin-top: 1rem;
+    display:inline-flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    opacity: 30%;
+    color:var(--clr-contrast);
+}
+#scoreValueContainer{
+    display:inline-flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    font-size: 2rem;
+    color:var(--clr-background);
+}
+.scores{
+    margin-bottom: 0px;
+}
+.scoreValue{
+    margin: 0;
+}
+
+/*--------------------------------HANDS---------------------------------*/
+#hands{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-top: 2rem;
+}
+#hands .handsButton:enabled{
+    width: 5.5rem;
+    height: 5.5rem;
+
+    padding: 15px;
+
+    fill: var(--clr-box_background);
+
+    border-radius: 0.6rem;
+    border: none;
+    background-color: var(--clr-background);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+#hands .handsButton:enabled:hover{
+    transform: translateY(-0.5rem);
+    width: 5.7rem;
+    height: 5.7rem;
+    box-shadow: 0px 0px 15px var(--clr-background);
+    transition: all 0.2s cubic-bezier(.09,.71,.5,.96);
+}
+
+#hands .handsButton:enabled:active{
+    width: 5.5rem;
+    height: 5.5rem;
+
+    box-shadow: 0px 0px 15px var(--clr-primary_variant);
+    background-color: var(--clr-primary_variant);
+}
+
+#hands .handsButton:disabled{
+    width: 5.5rem;
+    height: 5.5rem;
+
+    padding: 15px;
+
+    fill: var(--clr-box_background);
+
+    border-radius: 0.6rem;
+    border: none;
+    opacity: 40%;
+    background-color: var(--clr-col_1);
+
+    transition: all 0.3s cubic-bezier(.61,0,.15,1.06);
+}
+
+/*==============================HAND SIGNS==============================*/
+.rock{
+    fill: #f64c71;
+    background-image: url(./Hands/hand_rock.svg);
+    width: 6rem;
+    transform: scaleY(-100%) rotate(-120deg);
+}
+.paper{
+    fill: #f64c71;
+    background-image: url(./Hands/hand_paper.svg);
+    width: 6rem;
+    transform: scaleY(-100%) rotate(-120deg);
+}
+.scissors{
+    fill: #f64c71;
+    background-image: url(./Hands/hand_scissors.svg);
+    width: 6rem;
+    transform: scaleY(-100%) rotate(-120deg);
+}
+
+/*==============================ANIMATIONS==============================*/
+
+.animateHandsCounting{
+    animation: handsCountingAnimation 0.3s 4 alternate cubic-bezier(.79,.03,.51,1);
+}
+.animateHandsThrowing{
+    animation: handsThrowAnimation 0.3s 1 forwards cubic-bezier(.04,.72,.39,1);
+}
+.returnToPlace{
+    animation: returnToPlaceAnimation 0.3s 1 forwards cubic-bezier(.04,.72,.39,1);
+}
+.popScore{
+    animation: popScore 0.3s 2 alternate cubic-bezier(.04,.72,.39,1);
+}
+@keyframes handsCountingAnimation {
+    from{
+        transform: translateY(0px) rotate(60deg);
+    }
+    to{
+        transform: translateY(30px) rotate(80deg);
+    }
+}
+@keyframes handsThrowAnimation {
+    from{
+        transform: translateX(0px) rotate(60deg);
+    }
+    to{
+        transform: translateX(60px) rotate(70deg);
+    }
+}
+@keyframes returnToPlaceAnimation {
+    from{
+        transform: translateX(60px) rotate(70deg);
+    }
+    to{
+        transform: translateX(0px) rotate(60deg);
+    }
+}
+@keyframes popScore {
+    from{
+        transform: scale(100%);
+        color: var(--clr-background);
+    }to{
+
+        transform: scale(120%);
+        color: var(--clr-warning);
+    }
+}
+
+.animateHandsCountingComputer{
+    animation: handsCountingAnimationComputer 0.3s 4 alternate cubic-bezier(.79,.03,.51,1);
+}
+.animateHandsThrowingComputer{
+    animation: handsThrowAnimationComputer 0.3s 1 forwards cubic-bezier(.04,.72,.39,1);
+}
+.returnToPlaceComputer{
+    animation: returnToPlaceAnimationComputer 0.3s 1 forwards cubic-bezier(.04,.72,.39,1);
+}
+@keyframes handsCountingAnimationComputer {
+    from{
+        transform: scaleY(-100%) translateY(0px) rotate(-120deg);
+    }
+    to{
+        transform: scaleY(-100%) translateY(-30px) rotate(-100deg);
+    }
+}
+@keyframes handsThrowAnimationComputer {
+    from{
+        transform: scaleY(-100%) translateX(0px) rotate(-120deg);
+    }
+    to{
+        transform: scaleY(-100%) translateX(-60px) rotate(-100deg);
+    }
+}
+@keyframes returnToPlaceAnimationComputer {
+    from{
+        transform: scaleY(-100%) translateX(-60px) rotate(-100deg);
+    }
+    to{
+        transform: scaleY(-100%) translateX(0px) rotate(-120deg);
+    }
+}
